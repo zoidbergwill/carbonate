@@ -34,7 +34,7 @@ def common_parser(description='untitled'):
 def metrics_from_args(args):
     arg = args.metrics_file
     fi = arg if (arg and arg[0] != '-') else []
-    return map(lambda s: s.strip(), fileinput.input(fi))
+    return [s.strip() for s in fileinput.input(fi)]
 
 
 def metric_to_fs(path, prepend=None):

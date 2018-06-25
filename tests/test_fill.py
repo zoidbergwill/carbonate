@@ -72,9 +72,9 @@ class FillTest(unittest.TestCase):
 
         end = int(time.time()) + schema[0][0]
         start = end - (schema[0][1] * schema[0][0])
-        times = range(start, end, schema[0][0])
+        times = list(range(start, end, schema[0][0]))
 
-        override_data = zip(times, data)
+        override_data = list(zip(times, data))
 
         startTime = time.time()
         self._createdb(self.db, schema)
@@ -119,7 +119,7 @@ class FillTest(unittest.TestCase):
 
         end = int(time.time()) + schema[0][0]
         start = end - (schema[0][1] * schema[0][0])
-        times = range(start, end, schema[0][0])
+        times = list(range(start, end, schema[0][0]))
 
         original_data = [t for t in zip(times, original) if t[1] is not None]
         holes_data = [t for t in zip(times, holes) if t[1] is not None]
@@ -140,7 +140,7 @@ class FillTest(unittest.TestCase):
         except (IOError, OSError):
             pass
 
-        complete = range(1, 21)
+        complete = list(range(1, 21))
         seconds_per_point = 1
         seconds_per_point_l2 = seconds_per_point * 4
         points_number = len(complete)
@@ -151,9 +151,9 @@ class FillTest(unittest.TestCase):
 
         end = int(time.time()) + seconds_per_point
         start = end - (points_number * seconds_per_point)
-        times = range(start, end, seconds_per_point)
+        times = list(range(start, end, seconds_per_point))
 
-        complete_data = zip(times, complete)
+        complete_data = list(zip(times, complete))
         self._createdb(self.db, schema, complete_data)
         self._createdb(dst_db, schema, empty_data)
 

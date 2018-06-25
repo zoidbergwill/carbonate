@@ -41,7 +41,7 @@ class SyncTest(unittest.TestCase):
 
         end = int(time.time()) + schema[0][0]
         start = end - (schema[0][1] * schema[0][0])
-        times = range(start, end, schema[0][0])
+        times = list(range(start, end, schema[0][0]))
 
         have_data = [t for t in zip(times, have) if t[1] is not None]
         remote_data = [t for t in zip(times, remote) if t[1] is not None]
@@ -52,7 +52,7 @@ class SyncTest(unittest.TestCase):
         heal_metric(self.db, testdb, overwrite=True)
 
         final_data = whisper.fetch(testdb, 0)
-        self.assertEqual(final_data[1], range(1,21))
+        self.assertEqual(final_data[1], list(range(1,21)))
 
 
     def test_heal_empty(self):
